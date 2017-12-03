@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5edc3e75-620a-42dd-80b1-26186794f682" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_test/config.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_test/manage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_test/tests/test_basics.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="flask-ml.iws" />
@@ -325,7 +322,13 @@
       <option name="project" value="LOCAL" />
       <updated>1512306243632</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="123">
+      <created>1512306324773</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1512306324773</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">

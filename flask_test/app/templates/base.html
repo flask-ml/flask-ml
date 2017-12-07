@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{{svm}}
 
-</body>
-</html>
+<!-- <!doctype html>
+<title>{% block title %}Index{% endblock %} | Flask-ML</title>
+<div>
+  <div>
+    {% if g.user %}
+      <a href="{{ url_for('index') }}">[{{ g.user.username }}]</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('index') }}">Sign in</a>
+      <a href="{{ url_for('logout') }}">Login</a>
+    {% endif %}
+      <h1>Machine Learning</h1>
+
+  </div>
+
+  {% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+      <ul class="flashes">
+      {% for message in flashes %}
+        <li>{{ message }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  
+  <div>
+  {% block body %}{% endblock %}
+  </div>
+</div>
+ -->

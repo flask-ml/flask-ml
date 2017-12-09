@@ -1,9 +1,13 @@
 from flask import Flask, request, g, render_template, flash, redirect, session, url_for
 from model import *
 from form import *
+import sys
+sys.path.append('..')
+from Algorithm.Classification.src.SVM import *
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'adsfhgasfkjhkj'  
+app.config['SECRET_KEY'] = 'adsfhgasfkjhkj'
+
 
 @app.before_request
 def before_request():
@@ -20,6 +24,12 @@ def index():
 	"""
 	# if not g.user:
 	# 	return render_template('index.html')
+
+	# test svm
+	if request.method == 'POST':
+		if request.form['svm-param']:
+			svm_score = get_svm(float(request.form['svm-param']))
+			return render_template('index.html', svm_score = svm_score)
 	return render_template('index.html')
 	
 @app.route('/login', methods = ['GET', 'POST'])
@@ -40,9 +50,9 @@ def logout():
 	"""
 	清空session里保存的当前用户
 	"""
-    flash('You were logged out')
-    session.pop('user_id', None)
-    return redirect(url_for('login'))
+	flash('You were logged out')
+	session.pop('user_id', None)
+	return redirect(url_for('login'))
 
 
 @app.route('/register', methods=['GET', 'POST'])

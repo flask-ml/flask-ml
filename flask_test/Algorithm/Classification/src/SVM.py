@@ -1,8 +1,9 @@
 from sklearn import svm
 from sklearn.datasets import load_iris
-from flask_test.Algorithm.Classification.src.train_test import train_test_
+# from train_test import *
+from Algorithm.Classification.src.train_test import *
 
-def main(t):
+def get_svm(t):
     iris = load_iris()
     X = iris.data
     Y = iris.target
@@ -22,7 +23,7 @@ def main(t):
     print("Linear SVC: ",lin_svc.score(X_test,Y_test))
     return svc.score(X_test, Y_test)
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     get_svm()
 
 

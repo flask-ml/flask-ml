@@ -1,21 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>twt</title>
-	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+{% extends "base.html" %}
+{% block body %}
+ahahahahah
 
-<form role="form">
-	<div class="form-group">
-		<label for="name">名称</label>
-		<input type="text" class="form-control" id="name"
-			   placeholder="请输入名称">
-	</div>
+
+<div>
+	<h4>测试svm的结果：</h4>
+<form action="" method="POST">
+	<tr>
+		<td><input type="text" name="svm-param"></td>
+		<td><input type="submit" name="svm-sub"></td>
+	</tr>
+	<tr>
+		<td>{{svm_score}}</td>
+	</tr>
 </form>
+</div>
 
-</body>
-</html>
+
+{% endblock %}

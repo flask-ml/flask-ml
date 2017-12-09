@@ -1,6 +1,5 @@
-from flask import Flask, render_template
-
-from flask_test.Algorithm.Classification.src.SVM import main
+from flask import Flask, request, g, render_template, flash, redirect, session, url_for
+from flask_ml.flask_test.Algorithm.Classification.src.SVM import main
 
 app = Flask(__name__)
 

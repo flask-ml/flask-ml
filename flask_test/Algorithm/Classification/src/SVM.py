@@ -1,29 +1,25 @@
 from sklearn import svm
 from sklearn.datasets import load_iris
-# from train_test import *
-from Algorithm.Classification.src.train_test import *
+from sklearn import model_selection, cross_validation
 
-def get_svm(t):
+def get_svm(C=1.0, kernel='rbf', max_iter=1, gamma='auto', random_state=100, test_size=0.2):
+    '''
+
+    :param C: penalty factor
+    :param kernel: 'linear', 'rbf', 'poly', 'sigmoid'
+    :param max_iter: max iters
+    :param gamma:
+    :param random_state: random state
+    :param size: split train and test
+    :return: score of prediction
+    '''
     iris = load_iris()
     X = iris.data
     Y = iris.target
-    # input : kernel
-    kernel = ['linear', 'rbf', 'poly']
-    C = 1.0
 
-    X_train, X_test, Y_train, Y_test = train_test_(X, Y, t, 100)
-
-    svc = svm.SVC(kernel='linear', C=C).fit(X_train,Y_train)
-    print("SVC with linear kernel: ",svc.score(X_test,Y_test))
-    rbf_svc = svm.SVC(kernel='rbf', gamma=0.7, C=C).fit(X_train,Y_train)
-    print("SVC with RBF kernel: ",rbf_svc.score(X_test,Y_test))
-    poly_svc = svm.SVC(kernel='poly', degree=3, C=C).fit(X_train,Y_train)
-    print("SVC with Polynomial kernel: ",poly_svc.score(X_test,Y_test))
-    lin_svc = svm.LinearSVC(C=C).fit(X_train,Y_train)
-    print("Linear SVC: ",lin_svc.score(X_test,Y_test))
+    X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X, Y, test_size=test_size, random_state=random_state)
+    svc = svm.SVC(kernel=kernel, C=C, max_iter=max_iter, gamma=gamma).fit(X_train,Y_train)
     return svc.score(X_test, Y_test)
 
-# if __name__ == '__main__':
-#     get_svm()
 
 

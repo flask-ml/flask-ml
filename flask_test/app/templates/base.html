@@ -3,7 +3,7 @@
 <div>
   <div>
   	{% if g.user %}
-    	<a href="{{ url_for('index') }}">[{{ g.user.username }}]</a>
+    	<a href="{{ url_for('index') }}">[{{ g.user.name }}]</a>
     	<a href="{{ url_for('logout') }}">Logout</a>
   	{% else %}
     	<a href="{{ url_for('register') }}">Sign up</a>

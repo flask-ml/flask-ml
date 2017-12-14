@@ -1,4 +1,6 @@
 from flask import Flask, request, g, render_template, flash, redirect, session, url_for
+# from flask.wtf.csrf import CSRFProtect
+from flask.ext.bootstrap import Bootstrap
 from model import *
 from form import *
 import sys
@@ -7,17 +9,21 @@ from Algorithm.Classification.src.SVM import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'adsfhgasfkjhkj'
+# CSRFProtect(app)
+Bootstrap(app)
 
 
 @app.before_request
 def before_request():
     g.user = None
     s = Session()
-    if 'user_name' in session:
-    	g.user = s.query(User).filter(User.name == session['user_name']).first()
+    if 'email' in session:
+    	g.user = s.query(User).filter(User.email == session['email']).first()
+    	print(g.user)
 
 
 @app.route('/', methods = ['GET', 'POST'])
+@app.route('/index', methods = ['GET', 'POST'])
 def index():
 	"""
 	游客模式
@@ -34,15 +40,14 @@ def index():
 	
 @app.route('/login', methods = ['GET', 'POST'])
 def login():	
-	"""
-	登陆
-	"""
-	login_form  = LoginForm(request.form)
-	if request.method == 'POST' and form.validate():
-		user = query_user(form.name.data)
-		session['user_name'] = classToDict(user)
+	form  = LoginForm(request.form)
+	if form.validate_on_submit():
+		user = query_user(form.email.data)
+		print(user)
+		session['email'] = classToDict(user)['email']
+		print(session['email'])
 		return redirect(url_for('index'))
-	return render_template('login.html')
+	return render_template('login.html', form = form, title_name = "Login")
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -58,13 +63,13 @@ def logout():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	form = RegistrationForm(request.form)
-	if request.method == 'POST' and form.validate():
-		add_user( form.email.data,
+	if form.validate_on_submit():
+		add_user(form.email.data,
 			form.username.data,
 			form.password.data)
 		flash('Thanks for registering')
 		return redirect(url_for('login'))
-	return render_template('register.html', form=form)
+	return render_template('register.html', title_name = "Register", form=form)
 
 
 

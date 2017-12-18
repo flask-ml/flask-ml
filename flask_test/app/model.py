@@ -46,6 +46,7 @@ def session_scope():
 	创建上下文管理，处理事务，操作失败回滚
 	"""
 	session = Session()
+	session.expire_on_commit = False
 	try:
 		yield session
 		session.commit()
@@ -56,15 +57,16 @@ def session_scope():
 		session.close()
 
 
-def query_user(name = None):
+def query_user(email = None):
 	with session_scope() as session:
-		return session.query(User).filter(User.name == name).first()
+		return session.query(User).filter(User.email == email).first()
 
 def add_user(email, name, pw):
 	with session_scope() as session:
-		user = User(name=name,email=email,
+		user = User(name=name, email=email,
 		pw=pw)
 		session.add(user)
 		
 # Base.metadata.create_all(engine)
-# add_user('2@email.com', 'haha', '1')
+# add_user('21@email.com', 'haha', '1')
+print(query_user('9@email.com'))

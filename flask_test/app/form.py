@@ -1,6 +1,7 @@
 from flask.ext.wtf import Form
 # from flask.wtf.csrf import CSRFProtect
-from wtforms import TextField, FileField, BooleanField, TextAreaField, PasswordField, StringField,validators,SubmitField, SelectField
+from wtforms import TextField, BooleanField, TextAreaField, PasswordField, StringField,validators,SubmitField, SelectField
+from flask.ext.wtf.file import FileField, FileAllowed, FileRequired
 from model import *
 
 
@@ -174,5 +175,11 @@ class DTreeForm(Form):
 
 
 
-# class ExcelForm(Form):
-#     file = FileField('Upload', validators.FileAllowed(['csv', 'xls', 'xlsx']))
+class ExcelForm(Form):
+    """
+    upload file
+    """
+    file = FileField('Upload', validators=[
+        FileAllowed(['csv', 'xls', 'xlsx'], "Format of upload file can't distinguish"),
+        FileRequired("no file upload")
+        ])

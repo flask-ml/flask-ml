@@ -6,7 +6,7 @@
 {% block content %}
     <div class="container">
     	
-        {{ wtf.quick_form(form) }}
+        {{ wtf.quick_form(form,form_type="horizontal",horizontal_columns=('lg', 1, 2)) }}
         {{svm_score}}
         
     </div>

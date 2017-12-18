@@ -175,7 +175,7 @@ class DTreeForm(Form):
 
 
 
-class ExcelForm(Form):
+class UploadForm(Form):
     """
     upload file
     """
@@ -183,3 +183,4 @@ class ExcelForm(Form):
         FileAllowed(['csv', 'xls', 'xlsx'], "Format of upload file can't distinguish"),
         FileRequired("no file upload")
         ])
+    submit = SubmitField('Upload')

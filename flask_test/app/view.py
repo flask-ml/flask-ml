@@ -1,16 +1,24 @@
 from flask import Flask, request, g, render_template, flash, redirect, session, url_for
 # from flask.wtf.csrf import CSRFProtect
 from flask.ext.bootstrap import Bootstrap
+from flask_uploads import UploadSet, configure_uploads, DOCUMENTS, IMAGES,\
+	patch_request_class
 from model import *
 from form import *
+import os
 import sys
 sys.path.append('..')
 from Algorithm.Classification.src.SVM import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'adsfhgasfkjhkj'
+app.config['UPLOADED_FILES_DEST'] = os.getcwd() + '\\userfiles'
+
 # CSRFProtect(app)
 Bootstrap(app)
+files = UploadSet('files', DOCUMENTS)
+configure_uploads(app, files)
+patch_request_class(app) # 文件大小限制默认为16M
 
 
 @app.before_request
@@ -140,6 +148,18 @@ def register():
 		return redirect(url_for('login'))
 	return render_template('register.html', title_name = "Register", form=form)
 
+
+@app.route('/up', methods=['GET', 'POST'])
+def up():
+	form = UploadForm()
+	if form.validate_on_submit():
+		filename = files.save(form.file.data)
+		file_url = files.url(filename)
+		"""
+		handle excel as dataset, return form 
+		"""
+		return render_template('upload.html', form=form, success=file_url)
+	return render_template('upload.html', form=form)
 
 
 if __name__ == '__main__':

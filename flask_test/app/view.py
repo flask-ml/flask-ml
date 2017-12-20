@@ -9,6 +9,11 @@ import os
 import sys
 sys.path.append('..')
 from Algorithm.Classification.src.SVM import *
+from Algorithm.Classification.src.DTree import *
+from Algorithm.Classification.src.KNN import *
+from Algorithm.Classification.src.XGB import *
+from Algorithm.Classification.src.NB import *
+
 
 # app = Flask(__name__, static_url_path="")
 app = Flask(__name__)
@@ -70,6 +75,7 @@ def xgboost():
 		gamma = form.gamma.data
 		max_depth = form.max_depth.data
 		learning_rate = form.learning_rate.data
+		random_state = form.random_state.data
 		test_size = form.test_size.data
 		xgboost_score = get_XGB(gamma=gamma, max_depth=max_depth, learning_rate=learning_rate, random_state=random_state, test_size=test_size)
 		return render_template('xgboost.html', form=form, xgboost_score=xgboost_score)
@@ -94,11 +100,11 @@ def knn():
 	form = KNNForm()
 	if form.validate_on_submit():
 		n_neighbors = form.n_neighbors.data
-		kernel = form.kernel.data
+		algorithm = form.algorithm.data
 		random_state = form.random_state.data
 		test_size = form.test_size.data
-		knn_score = get_NB(kernel=kernel, random_state=random_state, test_size=test_size)
-		return render_template('knn.html', form= form, knn_score=naivebayes_score)
+		knn_score = get_KNN(n_neighbors=n_neighbors, algorithm=algorithm, random_state=random_state, test_size=test_size)
+		return render_template('knn.html', form= form, knn_score=knn_score)
 	return render_template('knn.html', form=form)
 
 

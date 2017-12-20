@@ -88,22 +88,27 @@ class XGBoostForm(Form):
         (0.1, '0.1'),
         (0.2, '0.2'),
         (0.3, '0.3'),
-    ])
+    ], coerce=float)
     max_depth = SelectField('max_depth', choices=[
         (1, '1'),
         (10, '10'),
         (100, '100'),
-    ])
+    ], coerce=int)
+    random_state = SelectField('random_state', choices=[
+        (1, '1'),
+        (10, '10'),
+        (100, '100'),
+    ], coerce=int)
     learning_rate = SelectField('learning_rate', choices=[
         (0.001, '0.001'),
         (0.002, '0.002'),
         (0.01, '0.01'),
-    ])
+    ], coerce=float)
     test_size = SelectField('test_size', choices=[
         (0.1, '0.1'),
         (0.2, '0.2'),
         (0.3, '0.3'),
-    ])
+    ], coerce=float)
     play = SubmitField('Play')
 
 
@@ -114,15 +119,15 @@ class NaiveBayesForm(Form):
         ('BernoulliNB', 'BernoulliNB'),
     ])
     random_state = SelectField('random_state', choices=[
-        (1, '1'),
-        (10, '10'),
         (100, '100'),
-    ])
+        (10, '10'),
+        (1, '1'),
+    ], coerce=int)
     test_size = SelectField('test_size', choices=[
         (0.1, '0.1'),
         (0.2, '0.2'),
         (0.3, '0.3'),
-    ])
+    ],coerce=float)
     play = SubmitField('Play')
 
 
@@ -131,7 +136,7 @@ class KNNForm(Form):
         (5, '5'),
         (10, '10'),
         (100, '100'),        
-    ])
+    ],coerce=int)
     algorithm = SelectField('algorithm', choices=[
         ('auto', 'auto'),
     ])
@@ -139,12 +144,12 @@ class KNNForm(Form):
         (1, '1'),
         (10, '10'),
         (100, '100'),
-    ])
+    ],coerce=int)
     test_size = SelectField('test_size', choices=[
         (0.1, '0.1'),
         (0.2, '0.2'),
         (0.3, '0.3'),
-    ])
+    ],coerce=float)
     play = SubmitField('Play')
 
 
@@ -157,7 +162,7 @@ class DTreeForm(Form):
         (4, '4'),
         (6, '6'),
         (8, '8'),
-    ])
+    ],coerce=float)
     max_features = SelectField('max_features', choices=[
         (None, 'None'),
     ])
@@ -165,12 +170,12 @@ class DTreeForm(Form):
         (1, '1'),
         (10, '10'),
         (100, '100'),
-    ])
+    ],coerce=float)
     test_size = SelectField('test_size', choices=[
         (0.1, '0.1'),
         (0.2, '0.2'),
         (0.3, '0.3'),
-    ])
+    ],coerce=float)
     play = SubmitField('Play')
 
 

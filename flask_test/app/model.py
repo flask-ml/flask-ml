@@ -68,5 +68,5 @@ def add_user(email, name, pw):
 		session.add(user)
 		
 # Base.metadata.create_all(engine)
-# add_user('21@email.com', 'haha', '1')
-print(query_user('9@email.com'))
+# add_user('111@email.com', 'haaha', '111')
+print(query_user('111@email.com'))

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>HexConversion</title>
+    </head>
+    <body>
+        <script language="javascript">
+        function test()
+        {
+            var num=document.getElementById("in").value;
+            var type=document.getElementById("title");
+            var tynum,to;
+            for(var i=0;i<type.length;i++)
+            {
+                if(type[i].selected)
+                tynum=parseInt(type[i].value);
+            }
+            switch(tynum)
+            {
+                case(1):to=parseInt(num).toString(2);break;
+                case(2):to=parseInt(num).toString(8);break;
+                case(3):to=parseInt(num).toString(16);break;
+                case(4):to=parseInt(num,2);break;
+                case(5):to=parseInt(num,8);break;
+                case(6):to=parseInt(num,16);break;
+                case(7):to=parseInt(num,2).toString(8);break;
+                case(8):to=parseInt(num,8).toString(2);break;
+                case(9):to=parseInt(num,2).toString(16);break;
+                case(10):to=parseInt(num,16).toString(2);break;
+                case(11):to=parseInt(num,8).toString(16);break;
+            case(12):to=parseInt(num,16).toString(8);break;
+            }
+            if(isNaN(to))  to="输入非法字符了哦";
+            document.getElementById("out").value=to;
+        }
+        </script>
+        <select name="title" id="title" style="width:152px;">
+            <option value="1">十进制转二进制</option>
+            <option value="2">十进制转八进制</option>
+            <option value="3">十进制转十六进制</option>
+            <option value="4">二进制转十进制</option>
+            <option value="5">八进制转十进制</option>
+            <option value="6">十六进制转十进制</option>
+            <option value="7">二进制转八进制</option>
+            <option value="8">八进制转二进制</option>
+            <option value="9">二进制转十六进制</option>
+            <option value="10">十六进制转二进制</option>
+            <option value="11">八进制转十六进制</option>
+            <option value="12">十六进制转八进制</option>
+        </select><br />
+        <input type="text" id="in" />
+        <input type="text" id="out" />
+        <input type="button" value="change" onclick="test()" />
+        <font color="#FF0000" style="font-size:12px;">*注：存在非法字符时，我们只截断有效字符进行转换</font>
+    </body>
+</html>

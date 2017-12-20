@@ -10,6 +10,7 @@ import sys
 sys.path.append('..')
 from Algorithm.Classification.src.SVM import *
 
+# app = Flask(__name__, static_url_path="")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'adsfhgasfkjhkj'
 app.config['UPLOADED_FILES_DEST'] = os.getcwd() + '\\userfiles'
@@ -27,7 +28,7 @@ def before_request():
     s = Session()
     if 'email' in session:
     	g.user = s.query(User).filter(User.email == session['email']).first()
-    	print(g.user)
+    	print(g.user.name)
 
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -96,9 +97,9 @@ def knn():
 		kernel = form.kernel.data
 		random_state = form.random_state.data
 		test_size = form.test_size.data
-		naivebayes_score = get_NB(kernel=kernel, random_state=random_state, test_size=test_size)
-		return render_template('naivebayes.html', form= form, naivebayes_score=naivebayes_score)
-	return render_template('naivebayes.html', form=form)
+		knn_score = get_NB(kernel=kernel, random_state=random_state, test_size=test_size)
+		return render_template('knn.html', form= form, knn_score=naivebayes_score)
+	return render_template('knn.html', form=form)
 
 
 @app.route('/dtree', methods=['GET', 'POST'])
@@ -118,13 +119,15 @@ def dtree():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():	
 	form  = LoginForm(request.form)
+	print('x')
 	if form.validate_on_submit():
 		user = query_user(form.email.data)
-		print(user)
+		# print(g.user.name)
 		session['email'] = classToDict(user)['email']
 		print(session['email'])
-		return redirect(url_for('index'))
-	return render_template('login.html', form = form, title_name = "Login")
+		return render_template('index.html')
+		# return redirect(url_for('index'))
+	return render_template('login.html', form = form)
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -133,8 +136,8 @@ def logout():
 	清空session里保存的当前用户
 	"""
 	flash('You were logged out')
-	session.pop('user_id', None)
-	return redirect(url_for('login'))
+	session.pop('email', None)
+	return redirect(url_for('index'))
 
 
 @app.route('/register', methods=['GET', 'POST'])

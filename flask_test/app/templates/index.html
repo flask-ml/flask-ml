@@ -1,4 +1,5 @@
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -18,9 +19,9 @@
     <link href="assets/css/style-responsive.css" rel="stylesheet">
 
 
-  </head>
+</head>
 
-  <body>
+<body>
   <section id="container" >
       <header class="header black-bg">
               <div class="sidebar-toggle-box">
@@ -45,8 +46,13 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">{{ g.user.name }}</h5>
+              	  <p class="centered">
+                      <a href="profile.html">
+                          <img src="assets/img/ui-sam.jpg" class="img-circle" width="60">
+                      </a>
+                  </p>
+              	  <h5 class="centered">{{ g.user.name }}
+                  </h5>
               	  	
                   <li class="mt">
                       <a class="active" href="/index">
@@ -76,11 +82,6 @@
                       </a>
                       <ul class="sub">
                           <li><a  href=""></a></li>
-                         <!--
-                         	作者：1127823177@qq.com
-                         	时间：2017-12-19
-                         	描述：待定内容
-                         -->
                       </ul>
                   </li>
                   
@@ -91,11 +92,6 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="blank.html"></a></li>
-                          <!--
-                          	作者：1127823177@qq.com
-                          	时间：2017-12-19
-                          	描述：也是待定
-                          -->
                       </ul>
                   </li>
                   
@@ -105,8 +101,8 @@
                           <span>其他功能</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="进制转换.html">进制转换</a></li>
-                          <li><a  href="base64的转换.html">base64转码</a></li>
+                          <li><a  href="/hex_conversion">进制转换</a></li>
+                          <li><a  href="/hex_base">base64转码</a></li>
                       </ul>
                   </li>
                   
@@ -116,7 +112,7 @@
                           <span>娱乐模块</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="">贪吃蛇</a></li>
+                          <li><a  href="/game_snake">贪吃蛇</a></li>
                           <li><a  href="">战机游戏</a></li>
                       </ul>
                   </li>
@@ -138,17 +134,18 @@
  
       <section id="main-content">
           <section class="wrapper">
-              <div class="center-block">
+              <embed class="center-block">
                   <div class="text-center">
                       <h1>欢迎来到在线机器学习网站！</h1>
                       <h2>很高兴见到你！</h2>
                       <HR style="border:3 double #987cb9" width="100%" color=#987cb9 SIZE=3>
-										</div>
-									<div>
-										<embed width="1300px" height="500px" src="static/WelcomeRobot.swf"></embed>
+                  </div>
+                  <img>
+                  <embed src="WelcomeRobot.swf" width="1300px" height="500px"  quality=high ></embed>
+                      </div>
 										
-										</div>
-							</div>			
+                  </div>
+              </div>
   				</section>
   		</section>
 
@@ -179,6 +176,6 @@
         return false;
         });
 		</script>
-  </body>
-</html>
+</body>
+
 

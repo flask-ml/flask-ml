@@ -15,8 +15,8 @@ from Algorithm.Classification.src.XGB import *
 from Algorithm.Classification.src.NB import *
 
 
-# app = Flask(__name__, static_url_path="")
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="")
+# app = Flask(__name__)
 app.config['SECRET_KEY'] = 'adsfhgasfkjhkj'
 app.config['UPLOADED_FILES_DEST'] = os.getcwd() + '\\userfiles'
 
@@ -121,6 +121,17 @@ def dtree():
 		return render_template('dtree.html', form=form, dtree_score=dtree_score)
 	return render_template('dtree.html', form=form)
 
+@app.route('/game_snake')
+def snake():
+	return render_template('game_snake.html')
+
+@app.route('/hex_conversion')
+def conversion():
+	return render_template('hex_conversion.html')
+
+@app.route('/hex_base')
+def base():
+	return render_template('hex_base.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():	
